@@ -12,7 +12,7 @@ public class Main {
         Map<String, String> availableCommands = new HashMap<>();
         availableCommands.put("cdir", "creates a new empty directory. Usage: cdir <directoryName(s)>");
         availableCommands.put("cfile", "creates new file if it doesn't exists. Usage: cfile <fileName(s)>");
-        availableCommands.put("quit", "exits console");
+        availableCommands.put("quit/exit", "exits console");
         availableCommands.put("lst", "List directory contents. Usage: lst <directoryName(s)>");
 
 
@@ -35,7 +35,7 @@ public class Main {
                 for(String c : availableCommands.keySet()){
                     System.out.println(c + " : " + availableCommands.get(c));
                 }
-            } else if (commandName.equals("quit")){
+            } else if (commandName.equals("quit") || commandName.equals("exit")) {
                 running = false;
 
             } else if (!availableCommands.containsKey(commandName)) {
