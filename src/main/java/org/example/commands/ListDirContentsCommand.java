@@ -35,6 +35,7 @@ public class ListDirContentsCommand implements Command {
                 for (Path path : dirStream) {
                     System.out.println(path.getFileName());
                 }
+                System.out.println("---------------------------");
             } catch (IOException e) {
                 System.err.println("Error accessing directory : " + e.getMessage());
             }

@@ -9,7 +9,7 @@ public class CreateFileCommand  implements Command {
     @Override
     public void execute(String[] arguments) {
         if (arguments.length == 0) {
-            System.err.println("Syntax: cfile <fileName>");
+            System.out.println("Syntax: cfile <fileName>");
             return;
         }
         for (String fileName : arguments) {
@@ -21,7 +21,7 @@ public class CreateFileCommand  implements Command {
                     Files.createFile(file);
                     System.out.println("File: " + file + " created successfully");
                 } catch (IOException e) {
-                    System.err.println("Failed to create file: " + e.getMessage());
+                    System.out.println("Failed to create file: " + e.getMessage());
                 }
             }
         }

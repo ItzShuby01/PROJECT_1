@@ -14,6 +14,7 @@ public class Main {
         availableCommands.put("cfile", "creates new file if it doesn't exists. Usage: cfile <fileName(s)>");
         availableCommands.put("quit/exit", "exits console");
         availableCommands.put("lst", "List directory contents. Usage: lst <directoryName(s)>");
+        availableCommands.put("dfile", "deletes a file. Usage: dfile <fileName(s)>");
 
 
 
