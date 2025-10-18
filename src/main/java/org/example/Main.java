@@ -1,5 +1,7 @@
 package org.example;
 
+import org.example.utils.FileManager;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -8,10 +10,10 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Map<String, String> availableCommands = new HashMap<>();
-        availableCommands.put("cdir", "creates a new empty directory. Usage: cdir <directoryName>");
-        availableCommands.put("cfile", "creates new file. Usage: cfile <fileName>");
+        availableCommands.put("cdir", "creates a new empty directory. Usage: cdir <directoryName(s)>");
+        availableCommands.put("cfile", "creates new file if it doesn't exists. Usage: cfile <fileName(s)>");
         availableCommands.put("quit", "exits console");
-        availableCommands.put("lst", "List directory contents. Usage: lst <directoryName>");
+        availableCommands.put("lst", "List directory contents. Usage: lst <directoryName(s)>");
 
 
 
@@ -22,33 +24,25 @@ public class Main {
 
         boolean running = true;
         while (running) {
-            System.out.println("> ");
-            String input = scanner.nextLine().toLowerCase();
-            String[] parts = input.split("\\s+", 2);
-            String command =parts[0];
-            String arg = parts.length > 1 ? parts[1].trim() : "";
-            switch (command) {
-                case "help":
-                    for (String c : availableCommands.keySet()) {
-                        System.out.println(c + ": " + availableCommands.get(c));
-                    }
-                    continue;
-                case "cdir":
-                    fileManager.createDirectory(arg);
-                    continue;
-                case "cfile":
-                    fileManager.createFile(arg);
-                    continue;
-                case "lst":
-                    fileManager.listDirContents(arg);
-                    continue;
-                case "quit":
-                    System.out.println("Bye !");
-                    running = false;
-                default:
-                    System.out.println("Unknown command");
-                    break;
+            System.out.print("> ");
+            String input = scanner.nextLine().trim();
+            String[] parts = input.split("\\s+");
+            String commandName =parts[0].toLowerCase();
 
+            String[] arguments = Arrays.copyOfRange(parts,1, parts.length);
+
+            if(commandName.equals("help")){
+                for(String c : availableCommands.keySet()){
+                    System.out.println(c + " : " + availableCommands.get(c));
+                }
+            } else if (commandName.equals("quit")){
+                running = false;
+
+            } else if (!availableCommands.containsKey(commandName)) {
+                System.out.println("Unknown command: " + commandName + ". Enter 'HELP' to see available commands.");
+            } else {
+                fileManager.registerCommands();
+                fileManager.getCommand(commandName).execute(arguments);
             }
         }
     }
