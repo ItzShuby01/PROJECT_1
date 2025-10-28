@@ -13,6 +13,7 @@ public class FileManager {
         commandMap.put("cdir", new CreateDirCommand());
         commandMap.put("lst", new ListDirContentsCommand());
         commandMap.put("dfile", new DeleteFileCommand());
+        commandMap.put("check", new CheckFileAndDir());
     }
 
     public Command getCommand(String commandName){
