@@ -14,6 +14,7 @@ public class FileManager {
         commandMap.put("lst", new ListDirContentsCommand());
         commandMap.put("dfile", new DeleteFileCommand());
         commandMap.put("check", new CheckFileAndDir());
+        commandMap.put("deldir", new DeleteDirCommand());
     }
 
     public Command getCommand(String commandName){
